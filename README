@@ -1,0 +1,93 @@
+# One-Click SIEM Lab (Azure Honeypot Automation)
+
+**one-click-siem-lab** is a Terraform project that automates the deployment of a honeypot-ready Windows 10 VM in Azure, exposed to the internet for logging and SIEM use cases. The project is designed for cybersecurity testing, blue team training, and log ingestion into Microsoft Sentinel.
+
+## 🚀 Features
+
+- One-touch deployment of:
+  - Azure Resource Group
+  - Virtual Network & Subnet
+  - Network Security Group (with open inbound rule)
+  - Public IP + NIC
+  - Windows 10 VM (Standard B2s)
+- Configurable using input variables (`.tfvars`)
+- Clean teardown via `terraform destroy`
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- [Terraform CLI](https://developer.hashicorp.com/terraform/downloads)
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+- An active [Azure subscription](https://azure.microsoft.com/free)
+
+### Setup
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/<your-username>/hestido.git
+cd hestido/one-click-siem-lab
+```
+
+2. Authenticate to Azure:
+
+```bash
+az login
+```
+
+3. Initialize the project:
+
+```bash
+terraform init
+```
+
+4. Configure your variables in `terraform.tfvars`:
+
+```hcl
+admin_password = "YourSecurePassword123!"
+project_name   = "one-click-siem-lab"
+```
+
+5. Deploy:
+
+```bash
+terraform apply
+```
+
+6. Destroy when done:
+
+```bash
+terraform destroy
+```
+
+## 🔒 Security Warning
+
+This lab intentionally exposes a Windows VM to the public internet.  
+**Do not use real credentials or store sensitive data.**
+
+## 🧪 Next Steps (Manual)
+
+- RDP into the VM using the output public IP
+- Install Sysmon
+- Connect to Log Analytics + Microsoft Sentinel
+- Add KQL queries, detection rules, dashboards
+
+## 📂 File Structure
+
+```bash
+.
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── terraform.tfvars     # NOT included in repo (.gitignore)
+└── .gitignore
+```
+
+## 📜 License
+
+MIT
+
+## 🧠 Author
+
+Created by Richard Dong
